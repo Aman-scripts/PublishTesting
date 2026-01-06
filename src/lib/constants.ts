@@ -38,11 +38,16 @@ export const APP_SPLASH_BACKGROUND_COLOR: string = '#f7f7f7';
 export const APP_BUTTON_TEXT: string = 'public';
 
 /* ------------------------------------------------------------
- * Farcaster Account Association
- * (leave undefined unless you have signed payload)
+ * Farcaster Account Association (REQUIRED)
  * ------------------------------------------------------------ */
-export const APP_ACCOUNT_ASSOCIATION: AccountAssociation | undefined =
-  undefined;
+export const APP_ACCOUNT_ASSOCIATION: AccountAssociation = {
+  header:
+    'eyJmaWQiOjEzMzY1ODIsInR5cGUiOiJhdXRoIiwia2V5IjoiMHhhRWIzOGQ2NzFkRDdFZDc1YUJjMUM0OUNhMzIxNTQ3NEY0NjJkNmM4In0',
+  payload:
+    'eyJkb21haW4iOiJwdWJsaXNoLXRlc3RpbmcudmVyY2VsLmFwcCJ9',
+  signature:
+    'NIZlsp+WbR0i6wwTqjc2SLUGdvaCeHNMnXEfubhnGVxka6YMxQdwPIQcHe3f6eWp9r9ioQfxikPNqWQPgDocpxs=',
+};
 
 /* ------------------------------------------------------------
  * Neynar Webhook Configuration

@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { Manifest } from '@farcaster/miniapp-core/src/manifest';
+
 import {
   APP_BUTTON_TEXT,
   APP_DESCRIPTION,
@@ -16,10 +17,16 @@ import {
   APP_ACCOUNT_ASSOCIATION,
 } from './constants';
 
+/* ------------------------------------------------------------
+ * Utility: Tailwind class merge
+ * ------------------------------------------------------------ */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/* ------------------------------------------------------------
+ * Mini App Embed Metadata (for sharing in casts)
+ * ------------------------------------------------------------ */
 export function getMiniAppEmbedMetadata(ogImageUrl?: string) {
   return {
     version: 'next',
@@ -44,19 +51,31 @@ export function getMiniAppEmbedMetadata(ogImageUrl?: string) {
   };
 }
 
+/* ------------------------------------------------------------
+ * Farcaster Domain Manifest
+ * This is what /.well-known/farcaster.json returns
+ * ------------------------------------------------------------ */
 export async function getFarcasterDomainManifest(): Promise<Manifest> {
   return {
-    accountAssociation: APP_ACCOUNT_ASSOCIATION!,
+    // 🔐 REQUIRED: ownership verification
+    accountAssociation: APP_ACCOUNT_ASSOCIATION,
+
+    // 📦 Mini App configuration
     miniapp: {
       version: '1',
-      name: APP_NAME ?? 'Neynar Starter Kit',
+      name: APP_NAME,
       homeUrl: APP_URL,
       iconUrl: APP_ICON_URL,
       imageUrl: APP_OG_IMAGE_URL,
-      buttonTitle: APP_BUTTON_TEXT ?? 'Launch Mini App',
+      buttonTitle: APP_BUTTON_TEXT,
       splashImageUrl: APP_SPLASH_URL,
       splashBackgroundColor: APP_SPLASH_BACKGROUND_COLOR,
       webhookUrl: APP_WEBHOOK_URL,
+
+      // Optional but recommended for discovery
+      primaryCategory: APP_PRIMARY_CATEGORY,
+      tags: APP_TAGS,
+      description: APP_DESCRIPTION,
     },
   };
 }
