@@ -57,10 +57,8 @@ export function getMiniAppEmbedMetadata(ogImageUrl?: string) {
  * ------------------------------------------------------------ */
 export async function getFarcasterDomainManifest(): Promise<Manifest> {
   return {
-    // 🔐 REQUIRED: ownership verification
     accountAssociation: APP_ACCOUNT_ASSOCIATION,
 
-    // 📦 Mini App configuration
     miniapp: {
       version: '1',
       name: APP_NAME,
@@ -71,11 +69,6 @@ export async function getFarcasterDomainManifest(): Promise<Manifest> {
       splashImageUrl: APP_SPLASH_URL,
       splashBackgroundColor: APP_SPLASH_BACKGROUND_COLOR,
       webhookUrl: APP_WEBHOOK_URL,
-
-      // Optional but recommended for discovery
-      primaryCategory: APP_PRIMARY_CATEGORY,
-      tags: APP_TAGS,
-      description: APP_DESCRIPTION,
     },
   };
 }
