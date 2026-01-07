@@ -44,6 +44,7 @@ export function Button({
     >
       {isLoading ? (
         <div className="flex items-center justify-center">
+        
           <div className="spinner-primary h-5 w-5" />
         </div>
       ) : (
